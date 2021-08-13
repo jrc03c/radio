@@ -21,6 +21,16 @@ class Radio {
     return self
   }
 
+  on(channel, callback) {
+    const self = this
+    return self.subscribe(channel, callback)
+  }
+
+  off(channel, callback) {
+    const self = this
+    return self.unsubscribe(channel, callback)
+  }
+
   broadcast(channel, payload) {
     const self = this
     if (!self.subscriptions[channel]) return self
@@ -30,6 +40,16 @@ class Radio {
     })
 
     return self
+  }
+
+  emit(channel, payload) {
+    const self = this
+    return self.broadcast(channel, payload)
+  }
+
+  trigger(channel, payload) {
+    const self = this
+    return self.broadcast(channel, payload)
   }
 }
 
