@@ -1,6 +1,10 @@
 class Radio {
   subscriptions = {}
 
+  static get singleton() {
+    return singleton
+  }
+
   subscribe(channel, callback) {
     const self = this
 
@@ -52,6 +56,8 @@ class Radio {
     return self.broadcast(channel, payload)
   }
 }
+
+const singleton = new Radio()
 
 if (typeof module !== "undefined") {
   module.exports = Radio
